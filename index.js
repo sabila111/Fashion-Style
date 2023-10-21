@@ -35,25 +35,6 @@ async function run() {
             res.send(result)
         })
 
-      app.get('/product/:name/:id', async(req, res)=>{
-        const name = req.params.name
-        const id = req.params.id
-        const query = {_id: new ObjectId(id ),
-            brand:name
-        }
-        const result= await productCollection.findOne(query)
-        res.send(result)
-      })
-    //   app.get('/product/:name/update/:id', async(req, res)=>{
-    //     const name = req.params.name
-    //     const id = req.params.id
-    //     const query = {_id: new ObjectId(id ),
-    //         brand:name
-    //     }
-    //     const result= await productCollection.findOne(query)
-    //     res.send(result)
-    //   })
-
         app.get('/product/:name', async(req, res)=>{
 
             const name = req.params.name
@@ -63,6 +44,31 @@ async function run() {
             console.log('add korchi', name)
         })
 
+
+        app.get('/product/single/:id', async(req, res)=>{
+            
+            const id = req.params.id
+            const query = {_id: new ObjectId(id ),
+               
+            }
+            const result= await productCollection.findOne(query)
+            res.send(result)
+          })
+
+        
+
+          
+      app.get('/product/:name/update/:id', async(req, res)=>{
+        const name = req.params.name
+        const id = req.params.id
+        const query = {_id: new ObjectId(id ),
+            brand:name
+        }
+        const result= await productCollection.findOne(query)
+        res.send(result)
+      })
+
+       
         app.post('/product', async (req, res) => {
             const addProduct = req.body
             console.log(addProduct)
